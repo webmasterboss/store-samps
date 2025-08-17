@@ -1,0 +1,78 @@
+<!DOCTYPE html><html lang="en">
+<head>
+<meta charset="UTF-8" /><title>Create Quotation</title>
+<link href="quotation.css" rel="stylesheet" />
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.31/jspdf.plugin.autotable.min.js"></script>
+<script defer src="quotation.js"></script>
+</head>
+<body>
+<div class="wrapper">
+  <h1>📝 New Quotation</h1>
+
+  <form id="quoteForm">
+    <!-- QUOTATION META -->
+    <section>
+      <h2>Meta</h2>
+      <div class="grid">
+        <label>No.<input name="number" placeholder="24"></label>
+        <label>Date<input type="date" name="date"></label>
+        <label>Valid till<input type="date" name="validTill"></label>
+        <label>Reference<input name="reference" placeholder="Santosh Ji"></label>
+      </div>
+    </section>
+
+    <!-- PARTY ADDRESSES -->
+    <section>
+      <h2>Addresses</h2>
+      <div class="grid">
+        <textarea name="billing" placeholder="Billing Address"></textarea>
+        <textarea name="shipping" placeholder="Shipping Address"></textarea>
+      </div>
+    </section>
+
+    <!-- ITEMS TABLE -->
+    <section>
+      <h2>Items</h2>
+      <table id="itemsTbl">
+        <thead><tr>
+          <th>Description</th><th>HSN/SAC</th><th>Qty</th>
+          <th>Unit</th><th>Rate (₹)</th><th>CGST %</th><th>SGST %</th>
+        </tr></thead>
+        <tbody></tbody>
+      </table>
+      <button type="button" id="addRow">+ Add Row</button>
+    </section>
+
+    <!-- BANK DETAILS -->
+    <section>
+      <h2>Bank Details (optional)</h2>
+      <div class="grid">
+        <label>Bank Name<input name="bankName"></label>
+        <label>Branch<input name="branch"></label>
+        <label>A/C No.<input name="account"></label>
+        <label>IFSC<input name="ifsc"></label>
+      </div>
+    </section>
+
+    <!-- TERMS -->
+    <section>
+      <h2>Terms &amp; Conditions (optional)</h2>
+      <textarea name="terms" rows="6"
+      placeholder="• Price Ex-Works ...\n• GST Extra ...\n• ..."></textarea>
+    </section>
+
+    <!-- ACTIONS -->
+    <div class="actions">
+      <button type="button" id="previewBtn" class="primary">Preview</button>
+      <button type="button" id="downloadBtn" class="secondary">Download</button>
+      <button type="submit" class="ghost">Save to DB</button>
+    </div>
+  </form>
+
+  <!-- LIVE PREVIEW -->
+  <iframe id="previewFrame" title="PDF preview"></iframe>
+</div>
+</body>
+</html>

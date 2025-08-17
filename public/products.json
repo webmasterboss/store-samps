@@ -1,0 +1,44 @@
+[
+  {
+    "id": 1,
+    "name": "iPhone 15 Pro",
+    "price": 134900,
+    "originalPrice": 149900,
+    "discount": 10,
+    "image": "https://images.unsplash.com/photo-1592750475338-74b7b21085ab?w=300&h=300&fit=crop",
+    "category": "Electronics",
+    "rating": 4.5,
+    "reviews": 1250,
+    "description": "Latest iPhone with titanium design and advanced camera system",
+    "specifications": {
+      "Screen Size": "6.1 inch",
+      "Storage": "128GB",
+      "RAM": "8GB",
+      "Camera": "48MP Triple Camera",
+      "Battery": "3274 mAh"
+    },
+    "inStock": true,
+    "brand": "Apple"
+  },
+  {
+    "id": 2,
+    "name": "Samsung Galaxy S24 Ultra",
+    "price": 129999,
+    "originalPrice": 139999,
+    "discount": 7,
+    "image": "https://images.unsplash.com/photo-1610945265064-0e34e5519bbf?w=300&h=300&fit=crop",
+    "category": "Electronics",
+    "rating": 4.3,
+    "reviews": 890,
+    "description": "Premium Android smartphone with S Pen and advanced AI features",
+    "specifications": {
+      "Screen Size": "6.8 inch",
+      "Storage": "256GB",
+      "RAM": "12GB",
+      "Camera": "200MP Quad Camera",
+      "Battery": "5000 mAh"
+    },
+    "inStock": true,
+    "brand": "Samsung"
+  }
+]

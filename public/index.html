@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ShopCart - Online Shopping for Electronics, Fashion & More</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Company Header Section: Place at the top of the BODY -->
+<div class="company-header">
+  <div class="company-header-main">
+    <div class="company-logo-box">
+      <img src="samps_logo.png" alt="SAMPS GROUP logo" class="company-logo" />
+    </div>
+    <div class="company-details">
+      <div class="company-title">SAMPS GROUP</div>
+      <div class="company-subtitle">Samps Medical Instruments</div>
+      <div class="company-meta">
+        <span><i class="fas fa-industry"></i> Electronics Machinery</span>
+        <span><i class="fas fa-map-marker-alt"></i> Unnao, Uttar Pradesh</span>
+        <span><b>GSTIN</b> : 09BZAPS9074A1Z7</span>
+      </div>
+    </div>
+    <div class="company-actions">
+      <button class="action-btn teal"><i class="fas fa-share-alt"></i></button>
+      <button class="action-btn green"><i class="fab fa-whatsapp"></i></button>
+      <button class="action-btn gold"><i class="far fa-envelope"></i></button>
+      <button class="orange-btn">Inquire Now</button>
+    </div>
+  </div>
+  <div class="company-nav">
+    <a href="#">India Mart</a>
+    <a href="#">Jobs</a>
+    <a href="#">Pay Now</a>
+    <a href="#">Support Request</a>
+  </div>
+</div>
+<!-- End company header section -->
+
+
+    
+    <!-- Filters Section -->
+    <div class="filters-section">
+        <div class="container">
+            <div class="filters-container">
+                <div class="filter-group">
+                    <label>Category:</label>
+                    <select id="categoryFilter" onchange="filterProducts()">
+                        <option value="">All Categories</option>
+                        <option value="Electronics">Electronics</option>
+                        <option value="Laptops">Laptops</option>
+                        <option value="Fashion">Fashion</option>
+                        <option value="Home">Home & Kitchen</option>
+                    </select>
+                </div>
+                
+                <div class="filter-group">
+                    <label>Sort by:</label>
+                    <select id="sortFilter" onchange="filterProducts()">
+                        <option value="">Relevance</option>
+                        <option value="price-low">Price -- Low to High</option>
+                        <option value="price-high">Price -- High to Low</option>
+                        <option value="rating">Customer Rating</option>
+                        <option value="newest">Newest First</option>
+                    </select>
+                </div>
+                
+                <div class="filter-group">
+                    <label>Price Range:</label>
+                    <select id="priceFilter" onchange="filterProducts()">
+                        <option value="">All Prices</option>
+                        <option value="0-10000">Under ₹10,000</option>
+                        <option value="10000-50000">₹10,000 - ₹50,000</option>
+                        <option value="50000-100000">₹50,000 - ₹1,00,000</option>
+                        <option value="100000-999999">Above ₹1,00,000</option>
+                    </select>
+                </div>
+                
+                <div class="filter-results">
+                    <span id="resultsCount">Showing all products</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <!-- Breadcrumb -->
+           
+            
+            <div class="content-wrapper">
+                <!-- Sidebar Filters -->
+                <aside class="sidebar">
+                    <div class="filter-section">
+                        <h3>Filters</h3>
+                        
+                        <div class="filter-category">
+                            <h4>CATEGORIES</h4>
+                            <div class="filter-options">
+                                <label><input type="checkbox" value="Electronics"> Hospital Furniture</label>
+                                <label><input type="checkbox" value="Laptops"> Hospital Bed</label>
+                                <label><input type="checkbox" value="Fashion"> Hospital Essentials</label>
+                            </div>
+                        </div>
+                        
+                        <div class="filter-category">
+                            <h4>PRICE</h4>
+                            <div class="price-range">
+                                <input type="range" id="priceRange" min="0" max="200000" value="200000">
+                                <div class="price-labels">
+                                    <span>₹0</span>
+                                    <span>₹2,00,000+</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="filter-category">
+                            <h4>BRAND</h4>
+                            <div class="filter-options">
+                                <label><input type="checkbox" value="Apple"> Apple</label>
+                                <label><input type="checkbox" value="Samsung"> Samsung</label>
+                                <label><input type="checkbox" value="Sony"> Sony</label>
+                                <label><input type="checkbox" value="LG"> LG</label>
+                            </div>
+                        </div>
+                        
+                        <div class="filter-category">
+                            <h4>CUSTOMER RATING</h4>
+                            <div class="rating-filters">
+                                <label><input type="checkbox"> 4★ & above</label>
+                                <label><input type="checkbox"> 3★ & above</label>
+                                <label><input type="checkbox"> 2★ & above</label>
+                                <label><input type="checkbox"> 1★ & above</label>
+                            </div>
+                        </div>
+                    </div>
+                </aside>
+                
+                <!-- Products Grid -->
+                <div class="products-section">
+                    <div id="productsGrid" class="products-grid">
+                        <!-- Products will be loaded here -->
+                    </div>
+                    
+                    <div id="loading" class="loading">
+                        <i class="fas fa-spinner fa-spin"></i>
+                        <span>Loading products...</span>
+                    </div>
+                    
+                    <div id="noProducts" class="no-products" style="display: none;">
+                        <i class="fas fa-search"></i>
+                        <h3>Sorry, no results found!</h3>
+                        <p>Please check the spelling or try searching for something else</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Product Detail Modal -->
+    <div id="productModal" class="modal">
+        <div class="modal-overlay" onclick="closeModal()"></div>
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal()">
+                <i class="fas fa-times"></i>
+            </button>
+            <div id="modalContent">
+                <!-- Product details will be loaded here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>ABOUT</h4>
+                    <a href="#">Contact Us</a>
+                    <a href="#">About Us</a>
+                    <a href="#">Careers</a>
+                    <a href="#">Press</a>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>HELP</h4>
+                    <a href="#">Payments</a>
+                    <a href="#">Shipping</a>
+                    <a href="#">Cancellation & Returns</a>
+                    <a href="#">FAQ</a>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>POLICY</h4>
+                    <a href="#">Return Policy</a>
+                    <a href="#">Terms Of Use</a>
+                    <a href="#">Security</a>
+                    <a href="#">Privacy</a>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>SOCIAL</h4>
+                    <a href="#"><i class="fab fa-facebook"></i> Facebook</a>
+                    <a href="#"><i class="fab fa-twitter"></i> Twitter</a>
+                    <a href="#"><i class="fab fa-youtube"></i> YouTube</a>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <div class="office-address">
+                    <div class="address-item">
+                        <strong>Contact Us:</strong>
+                        <p>Email : sampsinstruments@gmail.com<br>
+                        
+                    </div>
+                    
+                    <div class="address-item">
+                        <strong>Registered Office Address:</strong>
+                        <p>Samps Medical Instruments Admin Office,<br>
+                        B-2, Ganesh Ganj Market, Latush Road, <br>
+                        Head Office :- <br>
+                        160, Zeer Khirki, <br>
+                        Unnao, 209801 <br>
+                        Uttar Pradesh, India<br>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+     
+
+
+
+
+    <script src="script.js"></script>
+</body>
+</html>

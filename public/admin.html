@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel - ShopEasy</title>
+    <link rel="stylesheet" href="admin-styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="admin-container">
+        <header class="admin-header">
+            <h1>🔧 Admin Panel</h1>
+            <div class="header-actions">
+                <a href="/" target="_blank">View Store</a>
+                <button onclick="showAddForm()" class="add-btn">+ Add Product</button>
+            </div>
+        </header>
+        
+        <!-- Add/Edit Product Form -->
+        <div id="productForm" class="form-container" style="display: none;">
+            <h2 id="formTitle">Add New Product</h2>
+            <form onsubmit="saveProduct(event)">
+                <input type="hidden" id="productId">
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="productName">Product Name: <span class="required">*</span></label>
+                        <input type="text" id="productName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="productBrand">Brand: <span class="required">*</span></label>
+                        <input type="text" id="productBrand" required>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="productPrice">Price (₹): <span class="required">*</span></label>
+                        <input type="number" id="productPrice" step="0.01" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="productOriginalPrice">Original Price (₹):</label>
+                        <input type="number" id="productOriginalPrice" step="0.01">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="productCategory">Category: <span class="required">*</span></label>
+                        <select id="productCategory" required>
+                            <option value="">Select Category</option>
+                            <option value="Electronics">Electronics</option>
+                            <option value="Laptops">Laptops</option>
+                            <option value="Fashion">Fashion</option>
+                            <option value="Home">Home & Kitchen</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="productRating">Rating:</label>
+                        <input type="number" id="productRating" step="0.1" min="0" max="5">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="productReviews">Number of Reviews:</label>
+                        <input type="number" id="productReviews" min="0">
+                    </div>
+                </div>
+
+                <!-- Image Upload Section -->
+                <div class="form-group">
+                    <label>Product Image:</label>
+                    <div class="image-upload-container">
+                        <div class="image-upload-area" onclick="document.getElementById('productImageFile').click()">
+                            <i class="fas fa-cloud-upload-alt"></i>
+                            <p>Click to upload image</p>
+                            <small>Supports: JPG, PNG, GIF (Max 5MB)</small>
+                        </div>
+                        <input type="file" id="productImageFile" accept="image/*" style="display: none;">
+                        <input type="hidden" id="productImage">
+                        <img id="imagePreview" style="display: none; max-width: 200px; margin-top: 10px; border-radius: 4px; border: 1px solid #ddd;">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="productDescription">Description:</label>
+                    <textarea id="productDescription" rows="3" placeholder="Enter product description..."></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="productInStock" checked>
+                        <span class="checkmark"></span>
+                        In Stock
+                    </label>
+                </div>
+
+                <div class="form-actions">
+                    <button type="submit" class="save-btn">
+                        <i class="fas fa-save"></i> Save Product
+                    </button>
+                    <button type="button" onclick="cancelForm()" class="cancel-btn">
+                        <i class="fas fa-times"></i> Cancel
+                    </button>
+                </div>
+            </form>
+        </div>
+
+        <!-- Products Table -->
+        <div class="products-table-container">
+            <h2>Manage Products</h2>
+            <div class="table-wrapper">
+                <table id="productsTable" class="products-table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Image</th>
+                            <th>Name</th>
+                            <th>Brand</th>
+                            <th>Price</th>
+                            <th>Category</th>
+                            <th>Stock</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="productsTableBody">
+                        <tr><td colspan="8" style="text-align: center; padding: 20px;">Loading...</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script src="admin-script.js"></script>
+</body>
+</html>
